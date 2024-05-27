@@ -1,2 +1,4 @@
-# observability-studies
-Repositório para concentrar meus estudos sobre Zabbix, Grafana, Datadog e Prometheus
+# Observability studies
+Repositório para concentrar meus estudos sobre Zabbix, Grafana, Datadog e Prometheus.
+
+
