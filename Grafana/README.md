@@ -1,4 +1,4 @@
-# Grafana - Studies
+# 🟠 Grafana - Studies
 
 Download e Docs: 
 - https://grafana.com/grafana/download?platform=windows

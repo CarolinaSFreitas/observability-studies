@@ -1,6 +1,6 @@
-# Observability Studies
+# 👀 Observability Studies
 
-Repository to centralize my studies on Zabbix, Grafana, Datadog and Prometheus.
+Repository to centralize my studies on [Zabbix](./zabbix/), [Grafana](./grafana/), [Datadog](./datadog/) and [Prometheus](./prometheus/).
 
 # 3 Pillars of Observability
 

@@ -1,4 +1,4 @@
-# Datadog - Studies
+# 🐶 Datadog - Studies
 
 Datadog is an observability platform for cloud-scale apps, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform. 
 
@@ -20,3 +20,6 @@ Metrics are numerical values that can track anything about your environment over
   <img src="./images/ex2-metrics.png">
    <p><em>Datadog Metrics</em></p>
 </div>
+
+Metrics make more sense when we graph them over time. This allows us to clearly identify patterns in our data. In this way, we can distinguish between what is normal and what is abnormal.
+
