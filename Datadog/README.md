@@ -69,7 +69,28 @@ Alerts are simply setting a threshold in a monitor. When that threshold is breac
 ### Alert Fatigue 
 
 Alert fatigue arises from over alerting. It's important to only alert team member when something actionable needs to be done. 
-If everything is an emergency, nothing is an emergency.
+**If everything is an emergency, nothing is an emergency.**
 
+## Logs 
 
+A log is a computer generated file that contains information regarding the usage of a system. This gives you insight into the behavior of the resource. 
 
+### Why do we collect logs? 
+
+1. Compliance
+- Standards that the business is held to might dictate which logs you'll need to store and for how long you need to store them. 
+
+2. Insight 
+- Logs can give you insight into apps and system performance that metrics by themselves might not be able to provide.
+
+3. Security
+- This is a priority for businesses. Logs are needed to demonstrate that only authorized activities are going on inside of a system. 
+
+### Practical uses for Logs
+
+- Troubleshooting
+- Auditing 
+- Monitoring 
+- Alerting
+- Personal History 
+- Not getting in trouble 
