@@ -11,6 +11,17 @@ In the image below, it is possible to see the 3 pillars of observability in Data
    <p><em>Datadog Overview</em></p>
 </div>
 
+# 3 Pillars of Observability
+
+1. Metrics:
+These data points are numerical values that can track anything about your environment over time
+
+2. Logs:
+A computer generated file that contains time stamped information about the usage of that system
+
+3. Traces:
+Used to track the time spent by an application processing a request and the status of this request 
+
 ## Metrics
 
 Metrics are numerical values that can track anything about your environment over time, from latency to error rates to user signups. 
@@ -94,3 +105,39 @@ A log is a computer generated file that contains information regarding the usage
 - Alerting
 - Personal History 
 - Not getting in trouble 
+
+### Storing our Logs 
+
+**What kind of services generate logs?**
+- Servers
+- Serverless Functions
+- Web Browsers
+- Mobile/IoT Devices
+- Containers 
+- Cloud Services
+
+### How long do we store Logs? - Log Storage
+
+Three guiding principles when determining how long we want to store our logs:
+
+1. **Compliance:** Standards that the business is held to might dictate how long your logs need to be stored.
+2. **Usefulness:** Some logs are more helpful than others. It's up to you to decide which logs need to be stored for whatever length of time is useful to you.
+3. **Cost:** Storage costs money. Depending on the services you're using, you'll want to keep in mind your budget when deciding on storage length.
+
+In Datadog from logs we can create metrics, alarms, archives, etc.
+
+## Traces and Spans
+
+- A trace is used to track the time spent by an app processing a request long with the execution path taken. 
+A trace can also be defined as the entire journey including all of the stops along the way.
+
+- A span is the individual unit of work that the code is doing.
+
+![trace-span](./images/trace-span.png)
+
+### Why do we collect traces?
+
+1. **Microservices:** as business migrate away from Monolithic architecture, tracing is needed to figure out what all of the microservices are up to. 
+2. **Optimization:** tracing allows you to optimize the performance of your apps by identifying bottlenecks in the calls being made.
+3. **Troubleshooting:** when something goes wrong, we need insight into the actual app code. 
+
