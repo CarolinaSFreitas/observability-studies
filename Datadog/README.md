@@ -177,3 +177,40 @@ The Service Catalog in Datadog is a centralized place to view all services in yo
 
 ## LAB: USM and Service Catalog 
 
+[docker-compose.yml](./docker-compose.yml) example of how the Agent was configured to enable USM
+
+The first service listed, ``datadog``, is the Datadog Agent. The Agent monitors other containers and the Docker host to collect USM data.
+
+On line 17, this environment variable enables USM in the Agent:
+
+``DD_SYSTEM_PROBE_SERVICE_MONITORING_ENABLED=true``
+
+Locate line 25. This is the start of a list of files on the Docker host that are mounted as volumes in the Agent container. The Agent will access these files to build a comprehensive picture of the services running on the Docker host.
+
+Locate line 41, which defines the extra capabilities granted to the Agent container. These are required because the Agent uses eBPF for most of its data gathering, which operates at the kernel level.
+
+Docker-compose is orchestrating Storedog in this lab, but USM can be enabled almost anywhere the Agent can run. See the USM documentation to learn about USM in other environments.
+
+#### The Services
+Services that you want to appear in Service Catalog should have unified service tags. These are three tags that the Agent will look for to help identify services:
+
+``service``, the name of the services, such as ``store-ads``
+``env``, the environment in which the services is running. For example, ``production``, ``internal``, ``foundation-lab``
+``version``, a number such as ``1 or 1.2.3``
+If services are running in containers, they are tagged using labels.
+
+In docker-compose.yml, locate line 104, which defines the container labels for the ``store-frontend`` service:
+
+````
+labels:
+   com.datadoghq.ad.logs: '[{"source": "nodejs", "service": "store-frontend"}]'
+   com.datadoghq.tags.env: '${DD_ENV}'
+   com.datadoghq.tags.service: 'store-frontend'
+   com.datadoghq.tags.version: '1.0.10'
+   my.custom.label.team: 'frontend'
+```` 
+
+You can see the ``com.datadoghq.tags.*`` labels that comprise the unified service tags for this service. ``env`` is set to ``${DD_ENV}``, an environment from the Docker host that is set to ``foundation-lab``.
+
+Find other unified service tags in docker-compose.yml. Notice that the value for ``service`` is the name that Universal Service Monitoring uses to identify the service, and that's what is displayed in Service Catalog.
+
