@@ -214,3 +214,147 @@ You can see the ``com.datadoghq.tags.*`` labels that comprise the unified servic
 
 Find other unified service tags in docker-compose.yml. Notice that the value for ``service`` is the name that Universal Service Monitoring uses to identify the service, and that's what is displayed in Service Catalog.
 
+## Logs 
+
+Datadog Log Management allows you to cost-effectively collect, process, *archive, explore, and monitor all your logs without limitations.
+
+### Datadog Log Management:
+
+- You can collect logs from various sources, such as hosts, containers, and cloud providers.
+- Once the logs are ingested, you can enhance them using pipelines and processors, create metrics from the logs, and manage storage-optimized archives with Log Configuration options.
+- You can connect logs to metrics and traces from other sources for greater insights.
+- Finally, you can search, filter, and query the ingested logs in the Log Explorer.
+
+### Log Explorer 
+
+The Log Explorer is your central hub for investigating and exploring logs. You can browse logs, search for specific words, filter many log lines to show only the lines you’re interested in, group content, visualize patterns, and export logs.
+
+A search query in Log Explorer is composed of terms (either a single word or a group of words surrounded by double quotes) and Boolean operators. You can also filter logs using log facets, which are user-defined tags and attributes from your indexed logs, which are logs that have been collected, processed, and retained for analysis, alerting, and troubleshooting.
+
+Logs can be valuable as individual events, but sometimes valuable information lives in a subset of events. In order to get this information, you can group your logs into fields, patterns, and transactions.
+
+To better visualize the results of the filtered and aggregated logs, you can choose different visualizations to surface crucial information. For example, you can arrange your log data into columns by viewing them as a list, or track changes in your log data over time by observing them in a timeseries. Other visualizations include top list, nested tables, pie charts, and a tree map.
+
+#### Notas:
+
+To see logs in real time: 
+1. Logs
+2. Explorer
+3. Time field (ex.: Past 15 min.) change to Live Tail
+
+Search bar:
+Under the search bar, there are options to group the logs into fields, patterns, or transactions, and to visualize the logs as a list, timeseries, top list, table, tree map, or pie chart.
+
+1. In the search bar, start typing service:store-frontend, and the search bar's autocomplete feature will provide values to complete your query.
+
+2. When it appears, select store-frontend in the autocomplete list to view all the logs from the store-frontend service.
+
+3. Next to Group into, click on Fields to group logs by fields.
+
+4. When aggregating indexed logs by fields, all logs matching your query filter are aggregated into groups based on the value of one or more log facets.
+
+5. Next to Show Count of, click on all logs if it is not already selected. Here you could alternatively filter results by selecting various available measures, such as the count of unique values for a particular facet (for example, Service), or statistical operations on numerical values of a facet (for example, Duration).
+
+Search for all the logs originating from a file using that filename attribute:
+- Filter by ``@filename:ads.py``
+
+Filter using text strings from log messages:
+- In the search bar, enter the following, making sure to include the double quotes " around the text string:
+``"Total advertisements available"``
+
+Facets:
+Common tags and attributes automatically appear in the facet panel as Datadog parses logs. Facets are useful for qualitative or quantitative data analysis, so you can use them to search through logs, define log patterns, and perform log analytics. Although the automatically generated facets are helpful, you might also want to create your own custom facet that appears in the facet panel. You can accomplish this with the help of the log details in the log side panel.
+
+1. In the list of store-discounts logs that have "influencer specific discounts" in the log message, click one of the log lines to open the log side panel.
+
+2. Under Event Attributes, for the process attribute, click on name and select Create facet for @process.name from the popup menu.
+
+3. The Add facet popup dialog will appear. You can expand Advanced if you want to view the additional fields.
+
+4. Click Add.
+
+5. You'll see a message confirming that the facet has been successfully added.
+
+6. Close the logs side panel and clear the search bar at the top of the page.
+
+7. Scroll to the bottom of the facet panel. Under the OTHERS facet group, expand the process.name facet.
+
+Log Aggregation:
+With field aggregation, all logs matching the query filter are split into groups (i.e., aggregated) based on the different values of a specified log facet. Aggregating or grouping logs this way can help you see trends more clearly and visualize relationships between different types of log facets.
+
+It would likely be even more useful if you could see the logs grouped, for example, by Service.
+
+Next to by, change Everything to Service (service) to group by service.
+
+Export graphs
+You can export any logs visualization to other areas of Datadog. You can even create a custom metric from logs or download aggregated data as a CSV.
+
+1. Change the visualization back to Timeseries.
+
+2. Click the Save to Dashboard button above the graph.
+
+Note: If you click on the More button next to it, you can see the different ways to export the logs.
+
+3. In the Export graph popup dialog, click the New Dashboard link.
+
+4. Export graph dialog with New Dashboard highlighted.
+
+5. A notice at the top of the page contains a link to the new dashboard.
+
+6. Click the link if you want to see the dashboard.
+
+## Metrics: 
+
+Metrics are the smallest unit in the Datadog universe but they grant enormous insight into your infrastructure when they are visualized, measured, and monitored. Metrics are numerical measurements about any aspect of your system over a period of time, such as latency, error rates, or user registrations. In Datadog, metric data is received and retained as data points that include a value and timestamp.
+
+Monitors send notifications when metrics fall outside of the tolerances that you define.
+
+Service Level Objectives track metrics over long periods of time to help you define quality standards.
+
+Sending metrics to Datadog
+Metrics can be sent to Datadog from several sources:
+
+The Datadog Agent automatically sends many standard metrics, such as avg:system.cpu.user: 18.63 or system.disk.read_time: 42.
+Datadog integrations include metrics out of the box.
+Metrics can be generated within the Datadog platform.
+You can create custom metrics related to your business and submit them through the Agent, DogStatsD, or the HTTP API.
+Metric types
+Datadog offers metric types that apply to specific purposes: count, rate, gauge, histogram, and distribution. These metric types determine the available graphs and functions that can be utilized with the metric within Datadog.
+
+Count: Adds up the values received within a specified time interval. For example, 2000 HTTP requests.
+
+Rate: Divides the count by the duration of the time interval. Using the same example mentioned above, 0.566 HTTP requests per second.
+
+Gauge: Reports the last value received during the specific time interval. This metric type would be appropriate for monitoring the usage of RAM or CPU, since the last value gives an accurate representation of the host’s behavior during the timeframe: 2097152 bytes of RAM.
+
+Histogram: Summarizes the submitted values into five different values: the mean, count, median, 95th percentile, and maximum. This generates five distinct timeseries. For example, this metric type is useful for measuring latency, where it is inadequate to only know the average value. Histograms enable you to understand how the data is distributed without recording every single data point.
+
+Distribution: Summarizes the values submitted within a time interval across all the hosts in your environment. Distributions provide enhanced query functionality and configuration options that aren’t offered with other metric types.
+
+### Metrics Explorer
+Once you have metrics in Datadog, you can examine them using the Metrics Explorer. You can customize the graph shown on the Metrics Explorer page by using the query editor. You can also search for tag values to define a filtering scope or select a space aggregation method (such as, average, max, min, sum) to combine metric values. Additionally, the function button can be used to add functions to your query.
+
+### Monitors
+It’s a Tuesday afternoon and global web hosting company ABC has a major outage in region jupiter-east-1. You happen to be staring at your Datadog dashboard at the exact moment when the outage begins. But what if you aren’t?
+
+Monitors will continuously check metrics, integration availability, network endpoints, and other vital aspects for conditions that you define. When a threshold is exceeded, Datadog will notify you or your team on the Datadog mobile app, by email, or on your chat platform. This capability is essential for complete infrastructure visibility in one centralized location.
+
+Datadog offers a variety of monitors to cater to different monitoring needs. Some of the most popular types of monitors include:
+
+Metric monitors: Used to track and alert on specific metrics. This type of monitor is commonly used to track things like server CPU usage, memory utilization, or network bandwidth. For example, Send a notification to the DevOps team if average HTTP response time exceeds 1.50 seconds.
+
+Service Checks: Used to verify the status and availability of various services, such as databases or APIs. Service Checks can be used to monitor both external and internal services. For example, is the redis service healthy?
+
+APM monitors: Used to monitor application performance, track errors, and measure latency. This monitor provides insights into how applications are executing and helps to identify potential issues. For example, alert the development team with an application’s Errors per second is above 25.
+
+Synthetics monitors: Used to monitor critical user flows and business transactions. Synthetic API tests and browser tests help you proactively identify issues in application endpoints and key business workflows before your end users encounter them. Synthetics monitors can simulate user actions, such as logging in or adding an item to a shopping cart, and alert you if there are any errors or delays.
+
+Log monitors: Used to monitor specific keywords or patterns in log data. Log monitors can track security issues, application errors, or system events.
+
+These monitors can be customized. You can create Service Level Objectives from them, too.
+
+### Service Level Objective (SLO)
+Service Level Indicators (SLIs) are metrics that are used to measure some aspect of the level of service that is being provided. For example, 10 errors per second on the storedog-payments service. SLIs that are vital to your organization’s success can be monitored over time as Service Level Objectives (SLO). Tracking these metrics as SLOs establishes clear targets for service quality, enabling you to measure progress and make improvements over time. For example, the service has an SLO of 99% of requests being successful over the past 7 days or less than 1 second latency 99% of the time over the past 30 days.
+
+This approach enables site reliability engineers, frontend developers, and even product managers to maintain a consistent customer experience, balance feature development with platform stability, and enhance communication with both internal and external users. Your team will be focused on the metrics that matter most and you’ll be consistently delivering a high level of service to your customers. In essence, SLOs provide a roadmap for defining, measuring, and improving service quality, ultimately leading to a more robust and reliable system.
+
