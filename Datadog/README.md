@@ -315,21 +315,22 @@ Sending metrics to Datadog
 Metrics can be sent to Datadog from several sources:
 
 The Datadog Agent automatically sends many standard metrics, such as avg:system.cpu.user: 18.63 or system.disk.read_time: 42.
-Datadog integrations include metrics out of the box.
+
 Metrics can be generated within the Datadog platform.
 You can create custom metrics related to your business and submit them through the Agent, DogStatsD, or the HTTP API.
-Metric types
+
+#### Metric types
 Datadog offers metric types that apply to specific purposes: count, rate, gauge, histogram, and distribution. These metric types determine the available graphs and functions that can be utilized with the metric within Datadog.
 
-Count: Adds up the values received within a specified time interval. For example, 2000 HTTP requests.
+- Count: Adds up the values received within a specified time interval. For example, 2000 HTTP requests.
 
-Rate: Divides the count by the duration of the time interval. Using the same example mentioned above, 0.566 HTTP requests per second.
+- Rate: Divides the count by the duration of the time interval. Using the same example mentioned above, 0.566 HTTP requests per second.
 
-Gauge: Reports the last value received during the specific time interval. This metric type would be appropriate for monitoring the usage of RAM or CPU, since the last value gives an accurate representation of the host’s behavior during the timeframe: 2097152 bytes of RAM.
+- Gauge: Reports the last value received during the specific time interval. This metric type would be appropriate for monitoring the usage of RAM or CPU, since the last value gives an accurate representation of the host’s behavior during the timeframe: 2097152 bytes of RAM.
 
-Histogram: Summarizes the submitted values into five different values: the mean, count, median, 95th percentile, and maximum. This generates five distinct timeseries. For example, this metric type is useful for measuring latency, where it is inadequate to only know the average value. Histograms enable you to understand how the data is distributed without recording every single data point.
+- Histogram: Summarizes the submitted values into five different values: the mean, count, median, 95th percentile, and maximum. This generates five distinct timeseries. For example, this metric type is useful for measuring latency, where it is inadequate to only know the average value. Histograms enable you to understand how the data is distributed without recording every single data point.
 
-Distribution: Summarizes the values submitted within a time interval across all the hosts in your environment. Distributions provide enhanced query functionality and configuration options that aren’t offered with other metric types.
+- Distribution: Summarizes the values submitted within a time interval across all the hosts in your environment. Distributions provide enhanced query functionality and configuration options that aren’t offered with other metric types.
 
 ### Metrics Explorer
 Once you have metrics in Datadog, you can examine them using the Metrics Explorer. You can customize the graph shown on the Metrics Explorer page by using the query editor. You can also search for tag values to define a filtering scope or select a space aggregation method (such as, average, max, min, sum) to combine metric values. Additionally, the function button can be used to add functions to your query.
@@ -341,15 +342,15 @@ Monitors will continuously check metrics, integration availability, network endp
 
 Datadog offers a variety of monitors to cater to different monitoring needs. Some of the most popular types of monitors include:
 
-Metric monitors: Used to track and alert on specific metrics. This type of monitor is commonly used to track things like server CPU usage, memory utilization, or network bandwidth. For example, Send a notification to the DevOps team if average HTTP response time exceeds 1.50 seconds.
+- Metric monitors: Used to track and alert on specific metrics. This type of monitor is commonly used to track things like server CPU usage, memory utilization, or network bandwidth. For example, Send a notification to the DevOps team if average HTTP response time exceeds 1.50 seconds.
 
-Service Checks: Used to verify the status and availability of various services, such as databases or APIs. Service Checks can be used to monitor both external and internal services. For example, is the redis service healthy?
+- Service Checks: Used to verify the status and availability of various services, such as databases or APIs. Service Checks can be used to monitor both external and internal services. For example, is the redis service healthy?
 
-APM monitors: Used to monitor application performance, track errors, and measure latency. This monitor provides insights into how applications are executing and helps to identify potential issues. For example, alert the development team with an application’s Errors per second is above 25.
+- APM monitors: Used to monitor application performance, track errors, and measure latency. This monitor provides insights into how applications are executing and helps to identify potential issues. For example, alert the development team with an application’s Errors per second is above 25.
 
-Synthetics monitors: Used to monitor critical user flows and business transactions. Synthetic API tests and browser tests help you proactively identify issues in application endpoints and key business workflows before your end users encounter them. Synthetics monitors can simulate user actions, such as logging in or adding an item to a shopping cart, and alert you if there are any errors or delays.
+- Synthetics monitors: Used to monitor critical user flows and business transactions. Synthetic API tests and browser tests help you proactively identify issues in application endpoints and key business workflows before your end users encounter them. Synthetics monitors can simulate user actions, such as logging in or adding an item to a shopping cart, and alert you if there are any errors or delays.
 
-Log monitors: Used to monitor specific keywords or patterns in log data. Log monitors can track security issues, application errors, or system events.
+- Log monitors: Used to monitor specific keywords or patterns in log data. Log monitors can track security issues, application errors, or system events.
 
 These monitors can be customized. You can create Service Level Objectives from them, too.
 
