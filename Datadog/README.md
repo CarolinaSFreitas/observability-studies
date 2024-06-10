@@ -314,13 +314,15 @@ Service Level Objectives track metrics over long periods of time to help you def
 Sending metrics to Datadog
 Metrics can be sent to Datadog from several sources:
 
-The Datadog Agent automatically sends many standard metrics, such as avg:system.cpu.user: 18.63 or system.disk.read_time: 42.
+The Datadog Agent automatically sends many standard metrics, such as ``avg:system.cpu.user: 18.63`` or ``system.disk.read_time: 42``.
 
 Metrics can be generated within the Datadog platform.
 You can create custom metrics related to your business and submit them through the Agent, DogStatsD, or the HTTP API.
 
 #### Metric types
 Datadog offers metric types that apply to specific purposes: count, rate, gauge, histogram, and distribution. These metric types determine the available graphs and functions that can be utilized with the metric within Datadog.
+
+[Docs Metric Types](https://docs.datadoghq.com/metrics/types/?tab=count)
 
 - Count: Adds up the values received within a specified time interval. For example, 2000 HTTP requests.
 
@@ -358,4 +360,29 @@ These monitors can be customized. You can create Service Level Objectives from t
 Service Level Indicators (SLIs) are metrics that are used to measure some aspect of the level of service that is being provided. For example, 10 errors per second on the storedog-payments service. SLIs that are vital to your organization’s success can be monitored over time as Service Level Objectives (SLO). Tracking these metrics as SLOs establishes clear targets for service quality, enabling you to measure progress and make improvements over time. For example, the service has an SLO of 99% of requests being successful over the past 7 days or less than 1 second latency 99% of the time over the past 30 days.
 
 This approach enables site reliability engineers, frontend developers, and even product managers to maintain a consistent customer experience, balance feature development with platform stability, and enhance communication with both internal and external users. Your team will be focused on the metrics that matter most and you’ll be consistently delivering a high level of service to your customers. In essence, SLOs provide a roadmap for defining, measuring, and improving service quality, ultimately leading to a more robust and reliable system.
+
+### Metrics Summary - Notes
+The Metrics Summary page shows all metrics reporting across your infrastructure.
+
+#### Facet panel
+To the left of the metrics list, there is a facet panel. You can filter your metrics by Configuration, Percentiles, Metric Type, and Distribution Metric Origin.
+
+- Configuration allows you to identify metrics with tag configurations or additional percentile aggregations.
+
+- Percentiles shows you which distributions have percentiles enabled.
+
+- Metric Type helps you identify distributions and non-distributions (counts, gauges, and rates).
+
+- Distribution Metric Origin quickly identifies which Datadog component the distribution metrics have originated from.
+
+#### Metric details side panel
+The side panel will show you details about the metric, such as the number of distinct metrics reported, the number of hosts reporting a metric, and the number of tag values attached to a metric. You will also see metadata attached to your metric as well as a Tags table.
+
+#### Search bar
+While facets are helpful to quickly filter the metrics, search bars provide the most comprehensive set of capabilities to filter the list of metrics.
+
+You can search your metrics by metric name or tag using the Metric or Tag search fields at the top of the page.
+
+#### Query editor
+Near the top of the Metrics Explorer page, there is a query editor that you can use to customize graphs.
 

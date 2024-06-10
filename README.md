@@ -19,3 +19,8 @@ Objetivo de Nível de Serviço é uma meta interna de desempenho que um provedor
 **SLA:** Contrato formal com o cliente que define expectativas de serviço (acordo).
 Em termos de observabilidade, esses conceitos são essenciais para garantir que os sistemas estejam operando dentro dos parâmetros esperados e para identificar rapidamente quando algo não está conforme, permitindo ações corretivas eficazes.
 
+SLI: O que você está medindo?
+SLO: Quão bom tem que ser?
+SLA: SLO + O que acontece caso não entregue o acordado? 
+Error Budget: Equilíbrio entre inovação e estabilidade 
+
