@@ -660,3 +660,28 @@ Datadog provides a wide range of widgets that can be used to create powerful and
 
 Overall, the choice of widget depends on the specific use case and the data being displayed. By leveraging the right combination of widgets, you can create powerful and informative dashboards that provide critical insights into system, service, and even business performance.
 
+# Datadog 101: Site Reliability Engineer
+
+## Application Performance Monitoring (APM)
+
+Datadog Application Performance Monitoring (APM) provides end-to-end distributed tracing from frontend devices to applications, all the way to databases. By seamlessly correlating distributed traces with frontend and backend data, Datadog APM enables you to monitor service dependencies, reduce latency, and eliminate errors so that your users get the best possible experience.
+
+Two important concepts of APM are traces and spans:
+
+- A trace tracks the time spent by an application processing a request and the status of this request. Each trace consists of one or more spans.
+- A span represents a logical unit of work in a distributed system for a given time period. Multiple spans construct a trace.
+
+Datadog visualizes traces and spans in a flame graph:
+<div align="center">
+  <img src="./images/flame-graph.png">
+     <p><em>Metrics</em></p>
+</div>
+
+The flame graph above displays a trace containing 12 spans. Most of them are wide rectangles, and some of them are so small that they’re not easy to see without zooming in. The spans represent the units of work performed by the discounts service’s Flask application and the PostgreSQL database.
+
+The topmost span of a trace represents the entire time the request took across all the spans below it. The x-axis of flame graph represents specific points in time, from the start of the trace to the end. When a span includes work from different parts of the application or infrastructure, that work is represented by smaller spans beneath it.
+
+A summary of the above flame graph might be, “the discounts service’s ``/discount`` endpoint spent most of its time working on the request, resulting in two comparatively brief calls to the database.”
+
+As an SRE, it’s likely that you won’t spend as much time poring over APM traces as an application developer might. But understanding how to read them at a high level can help you diagnose system problems. If you can isolate an issue to specific application areas, you can delegate further troubleshooting to the appropriate developers.
+
