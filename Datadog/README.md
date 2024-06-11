@@ -507,3 +507,156 @@ There are three main types of integrations: Agent-based, authentication-based, a
 
 The Agent-based and authentication-based integrations offer an array of new metrics and pre-configured dashboards, whereas library integrations are imported into your application code to monitor your application logs, traces, and custom metrics. All the integrations and instructions for installing them are easily accessible in the Datadog app.
 
+#### Check Status
+
+A few system checks are among the dozens of integrations that ship with the Agent. They provide metrics from your base system about the CPU, IO, load, memory, swap, and uptime.
+
+You can see these checks running in your lab right now: ``docker compose exec datadog agent status``
+This command told your container orchestrator, docker compose, to execute the agent status command in the datadog service container. 
+
+
+Look at information supplied in the disk check. If you're getting tired of scrolling, use this command instead: ``docker compose exec datadog agent status | grep '^\s*disk' -A 11``
+
+Next to Instance ID, you can see the check's health. In this case, [OK].
+
+Further down is Total Runs, which is the number times that the Agent has run this check since the Agent started.
+
+You can also see the number of Metric Samples collected during the last check and a running total of those samples since the Agent started.
+
+Finally, you can also see Average Execution Time, Last Execution Date, and the Last Successful Execution Date, which are all useful for troubleshooting.
+
+By default, the Disk integration doesn't perform Service Checks or emit any Events, though many integrations do.
+
+Also, the Agent doesn't persist any of this information. If the Agent restarts, any totals and averages are reset.
+
+#### Run a check
+
+The Agent automatically runs system integration checks every 15 seconds. You can also run a check manually. This is something you might do while troubleshooting or developing your own check, because it also prints a lot of diagnostic information. Command: ``docker compose exec datadog agent check disk``
+
+Like the previous command you ran, this runs a command in the datadog container. This time, the command is agent check disk.
+
+You will see hundreds of lines of output, comprising all the samples the Agent collected when running that check.
+
+You'll also see a summary of the disk check specifically. This summary resembles the disk check summary in the status command output.
+
+Scroll up to find the last “metric” output by the check command. It will be between {} brackets, as displayed in the following screenshot:
+
+Note: Your output will likely be different than the output in the screenshot. Instructions below will refer to the screenshot, but be sure to inspect your own output, too.
+
+Looking at the system.disk.in_use metric in the screenshot, find the points value.
+
+Each point consists of a timestamp and a value. Here, there is one point, with the values 1681167901 and 1.
+
+All the Datadog integrations—including Agent, authentication, and library types—are covered in [Datadog Integration Docs](https://docs.datadoghq.com/integrations/)
+
+#### Intro. 
+To the Agent, an integration is simply another Python check function that collects metrics, events, logs, and service checks. In Datadog, an integration can also provide out-of-the-box (OOTB) dashboards, special log processing rules called pipelines, and other resources.
+
+Navigate to the Integrations page by hovering over Integrations (the puzzle piece icon) in the global navigation. From the resulting menu, click Integrations again.
+
+Integrations on this page are displayed as tiles, and they are grouped into three categories: Autodetected Integrations, Installed, and Available.
+
+**Autodetected** Integrations have been detected by the Agent but haven't been configured yet.
+
+**Installed** integrations have been detected by the Agent and do not require configuration.
+
+**Available** integrations are everything else, including non-Agent integrations, which you'll learn about in the next activity.
+
+Generally, if the Agent is successfully running an integration's check, and if that integration comes with OOTB dashboards, logs, or pipelines, you will see the integration listed here.
+
+[Containerized Docker Agent documentation](https://docs.datadoghq.com/containers/docker/?tab=standard#setup)
+
+### Authentication integrations 
+There are two common methods that authentication integrations use to get third-party data into your Datadog account:
+
+1. Datadog can use an API key, token, or other credentials for a third-party API to pull data into Datadog.
+2. A third party can use a Datadog API key that you provide to push data into Datadog.
+
+Datadog pulls from third party
+The CircleCI integration is an example of an integration that pulls data from a third-party API. Take a look at how it's configured.
+
+1. In Datadog, navigate to Integrations by hovering over the puzzle piece icon, and selecting Integrations.
+
+2. In the search field, enter ``circleci``.   
+
+3. Click the tile tagged with ``Integration`` (not ``Software License``) to open the integration details panel.
+
+4. Click the Configuration tab and read the instructions.
+
+To connect to CircleCI, you would log in to your CircleCI account and generate an API token for Datadog.
+
+5. Click the Add Account button.
+
+This is where you would paste that API key, and optionally give its related repository a name.
+
+#### Library Integrations
+The third type of Datadog integration is client libraries. These integrations are open-source code packages that are imported directly into application code. These libraries make it easy for developers to send traces and profiling data to Datadog through the Agent for application performance monitoring (APM).
+
+Storedog, the ecommerce application that is running in the lab, is served by several services—some of which are written in Ruby, and others in Python. There are Datadog libraries for each of these languages, and Storedog is already fully instrumented with them.
+
+Installing libraries
+Datadog provides a wizard to help you install libraries into your code in a variety of contexts.
+
+1. In Datadog, navigate to APM > Services > Add a Service.
+
+2. On the left, click Container-Based, as all of Storedog is running in containers.
+
+3. Click docker.
+
+4. Click Same host.
+
+5. Click python.
+
+This displays instructions for instrumenting a Python application for this context, including a wizard to help you configure the container. 
+
+## Dashboards: 
+
+Dashboards display charts, tables, and notes about the data that you’ve sent to Datadog. With Dashboards, you can easily track and monitor critical metrics that are crucial to the health of your system. It is a central location for monitoring key data, making it easier to identify issues, detect trends, and take action to improve your application performance. Therefore, dashboards provide a clear and concise overview of your infrastructure, allowing you to quickly assess the state of your system and make informed decisions.
+
+You can share these dashboards with people outside of Datadog. By sharing a dashboard through a URL or email link, others can view the contents of that dashboard in real-time, without any ability to modify the data.
+
+Datadog offers a wide range of out-of-the-box dashboards that can help you get started quickly. For example, you could find a dashboard based on an integration you have added (such as Postgres or Docker) or a feature you use in your application (such as Real User Monitoring).
+
+These dashboards can be cloned and customized to meet your specific needs, or you can even create your own dashboards from scratch. By leveraging these out-of-the-box dashboards, you can quickly get started with monitoring your infrastructure and applications and gain critical insights into system performance.
+
+When you create your dashboard, there are three layout options to choose from: grid-based dashboards (the default), timeboards, and screenboards. For all these layouts, you can add images, graphs, and logs.
+
+The grid-based dashboards are commonly used as status boards or storytelling views. These update in real-time and can represent fixed points in the past.
+
+A screenboard layout is similar except that it’s free-form instead of a grid layout.
+
+Timeboards provide an automatic layout and represent a single moment in time, whether fixed or real-time, for the entire dashboard. Those are often used for troubleshooting, correlation analysis, and general exploration of data.
+
+### Widgets 
+Datadog provides a wide range of widgets that can be used to create powerful and customized dashboards. Generic widgets graph data from Datadog products, while decoration widgets help visually structure and annotate dashboards. Some widely used widgets include:
+
+- Timeseries: These allow you to visualize metric data over time.
+
+<div align="center">
+  <img src="./images/timeseries.png">
+     <p><em>Metrics</em></p>
+</div>
+
+- Heat maps: These provide a color-coded view of your metrics aggregated across many tags, making it easy to identify patterns and trends.
+
+<div align="center">
+  <img src="./images/heatmaps.png">
+     <p><em>Metrics</em></p>
+</div>
+
+- Top lists: These show the top values for a metric, making it easy to quickly identify the most critical issues.
+
+<div align="center">
+  <img src="./images/toplists.png">
+     <p><em>Metrics</em></p>
+</div>
+
+- Event timelines: These show a timeline of events, making it easy to correlate system performance with changes or events.
+
+<div align="center">
+  <img src="./images/eventtimes.png">
+     <p><em>Metrics</em></p>
+</div>
+
+Overall, the choice of widget depends on the specific use case and the data being displayed. By leveraging the right combination of widgets, you can create powerful and informative dashboards that provide critical insights into system, service, and even business performance.
+
