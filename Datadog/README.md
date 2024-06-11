@@ -685,3 +685,18 @@ A summary of the above flame graph might be, “the discounts service’s ``/dis
 
 As an SRE, it’s likely that you won’t spend as much time poring over APM traces as an application developer might. But understanding how to read them at a high level can help you diagnose system problems. If you can isolate an issue to specific application areas, you can delegate further troubleshooting to the appropriate developers.
 
+#### Configuring APM
+
+Application developers are responsible for instrumenting applications to send traces to the Datadog Agent. They can use language-specific Datadog libraries, many of which provide comprehensive application traces with little to no additional code.
+
+As an SRE, you should know how to configure APM across your infrastructure. By default, the Datadog Agent collects traces using TCP on port 8126. Datadog tracing libraries need to know how to reach the Agent, and the types of information to include with traces.
+
+In the following lab, you see how to configure the Agent container and Storedog applications to collect and send APM traces with various tags.
+
+To send correctly tagged APM traces to the Agent, applications use service container environment variables. For example, instrumented applications expect the environment DATADOG_HOST to contain the URI for the Datadog Agent. Other environment variables include DD_ENV, DD_VERSION, and DD_SERVICE.
+
+#### Continuous Profiler
+Another Datadog product that is useful for application developers and SREs alike is Continuous Profiler. Continuous Profiler will help you find CPU, memory, and IO bottlenecks, broken down by method name, class name, and line number. This will help your organization’s developers significantly reduce end-user latency, and help you identify opportunities for infrastructure cost reduction.
+
+Currently, profiling is supported by Go, Java, Node.js, Python, and Ruby client libraries. More are under development. You’ll see how easy it is to enable low-overhead profiling for Storedog, and see the results.
+
