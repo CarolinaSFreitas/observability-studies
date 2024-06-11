@@ -386,3 +386,124 @@ You can search your metrics by metric name or tag using the Metric or Tag search
 #### Query editor
 Near the top of the Metrics Explorer page, there is a query editor that you can use to customize graphs.
 
+#### Visualization options
+Take some time to examine the graphs and explore the visualization options available to customize your graphs.
+
+Under the query editor, notice the drop down menus for Display, Color, Style, and Stroke.
+
+#### Export to dashboard
+When you click the Save to Dashboard button, a popup modal will ask you to select a dashboard to export the graph to.
+
+1. Select the New Dashboard link to create a new dashboard with this graph.
+
+2. Navigate to Dashboards > Dashboard List.
+
+3. Click the new dashboard at the top of the list that has your current date and time printed on it.
+
+note: You can also create this graph as a widget directly in the dashboard from scratch and get the same result.
+
+### Searching, filtering, and visualizing metrics in graphs makes it easy to spot issues. But you can't watch these graphs all day to see if something goes wrong.
+
+That's where monitors come in handy. Monitors can actively check metrics, integration availability, network endpoints, and more.
+
+Create a monitor that will alert your team when the ``trace.flask.request`` metric is above the threshold of 2 seconds for the ``store-discounts`` service.
+
+1. Navigate to Monitors > New Monitor.
+
+2. Notice all the types of monitors Datadog provides. You can hover over each type to view its summary.
+
+3. Click Metric to create a new metric-based monitor.
+
+4. In the top right corner, change the timeframe to Past 1 Hour.
+
+5. For Choose the detection method, keep the default value of Threshold Alert. An alert will be triggered when a metric crosses the threshold that you set.
+
+6. For Define the metric, in the metric field, type ``trace.flask.request`` and in the From field, type ``service:store-discounts``.
+
+7. Define the alert and warning thresholds.
+
+For Set alert conditions, set Alert threshold to 2, and Warning threshold to 1.5.
+
+8. Under Notify your team, you can name your monitor and set up a monitor alert message.
+
+9. For the Monitor Message, write a simple message letting others know what to look for, who to notify, and other helpful information. Try writing your own message, or feel free to use the message below:
+
+```` 
+Investigate the source of the problem. Try checking the [APM service page](https://app.datadoghq.com/apm/services/store-discounts/operations/flask.request?env=foundation-lab&start=1684155366000&end=1684158966000&paused=false) for `store-discounts`.
+
+Contact @incident@example.com after triage.
+```` 
+
+Note: The @ symbol preceding email addresses will render as a link to that user's Datadog profile if they are part of your organization. In this activity, the referenced user (incident@example.com) does not exist, but if you'd like to see how the notification emails are sent out, feel free to add your own email address.
+
+You can learn more about the special syntax features of the notification text area in the Notifications docs. These docs also cover powerful notifications-based capabilities enabled by the Datadog integrations for Slack, PagerDuty, and Webhooks—with others possible in the future.
+
+10. For the purpose of this activity, leave the rest of the default settings how they are. And Create.
+
+The newly created monitor will take a few minutes before any data appears, so examine the monitor interface while you wait.
+
+#
+
+At the top of the page, next to the monitor title, is the monitor status. A monitor can be in OK, Warn, Alert, or No Data states, based on whether associated data is surpassing Monitor thresholds (or not reporting at all).
+
+On the right, there are the Mute, Escalate (and Resolve if your monitor is in an alert state), and the settings cog buttons.
+
+The Mute button can be used to mute the entire monitor or partially mute it by setting a scope.
+
+The Escalate drop-down menu has options to create a case or declare an incident.
+
+If your monitor is in an alert state, you will see a Resolve button that will allow you to resolve your monitor manually.
+
+The Properties section gives you an overview of the monitor's status, type, ID, date created, author, tags, query, recipient, and message.
+
+Note: The monitor is an APM Monitor because the trace.flask.request metric is a distribution metric that originates from APM.
+
+The Status & History section displays the status graph that shows your monitor's status over time, along with the history graph and the evaluation graph.
+
+The Events section shows you the events generated from your monitor, such as when the alert was triggered or recovered.
+
+Note: You can use conditional variables to display different messages depending on the status of the monitor or the details relating to how it was triggered.
+
+## SLO
+SLOs enable you to set clear performance targets for a delivered service, product, or application—and then measure how well you are meeting these targets over time. In Datadog, you use SLOs to determine whether a performance measurement (or set of measurements) has been meeting a minimum threshold for a target percentage of time (by default, 99.9%) over a rolling time window of 7, 30, or 90 days. This capability lets you track how well your organization is meeting its service obligations with its external customers or internal end users.
+
+A good example of an SLO might be, "The discounts service should be running 99.9% of the time for any 7-day period."
+
+Now that you have a monitor on the discounts service request time, you can use that as the Service Level Indicator (SLI) for a new SLO.
+
+Navigate to Service Mgmt > Services > SLOs.
+
+At the top right corner, click the New SLO button.
+
+Under Select how to measure your SLO, select By Monitor Uptime.
+
+From the Select monitors drop-down menu, select the Discounts service request time monitor.
+
+Under Set your target & time window, leave the default values of 99.9% over 7 days.
+
+Under Add name and tags, set Name to the following: ``SLO: Discounts service request time``
+
+Click Create and Set Alert. This will bring you to the new SLO monitor settings page.
+
+Notice under Select SLO, your SLO has already been selected.
+
+For Set alert conditions, leave the default values for Error Budget. You will be alerted when 100% of the budget for a 7-day target is consumed.
+
+Under Notify Your Team, name the monitor: ``SLO: Discounts service request time``
+
+## Integrations: 
+
+The Datadog Agent is software that runs on your hosts. It collects process- level events and metrics and sends them to Datadog, where you can analyze your monitoring and performance data. For this course, the Datadog Agent has already been installed for you in all the labs.
+
+Every organization has its own, unique infrastructure. For the most part, the Datadog Agent’s default core integrations cover the most common attributes of these infrastructures—disk, CPU, memory, network throughput, etc. However, it’s possible to tailor Datadog to your specific infrastructure by either utilizing community integrations or creating your integration.
+
+There are three main types of integrations: Agent-based, authentication-based, and library. You can even build your own integration!
+
+- **Agent-based integrations** are installed with the Datadog Agent (on your host or in containers) and use a Python class method called check to define the metrics to collect.
+
+- **Authentication (crawler) based integrations** are set up in Datadog where you provide credentials to obtain metrics and data from APIs. These include popular integrations like Slack, AWS, Azure, and PagerDuty.
+
+- **Library integrations** use the Datadog API to allow you to monitor applications based on the language they’re written in, like Node.js or Python.
+
+The Agent-based and authentication-based integrations offer an array of new metrics and pre-configured dashboards, whereas library integrations are imported into your application code to monitor your application logs, traces, and custom metrics. All the integrations and instructions for installing them are easily accessible in the Datadog app.
+
