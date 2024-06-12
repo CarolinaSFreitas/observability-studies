@@ -700,3 +700,11 @@ Another Datadog product that is useful for application developers and SREs alike
 
 Currently, profiling is supported by Go, Java, Node.js, Python, and Ruby client libraries. More are under development. You’ll see how easy it is to enable low-overhead profiling for Storedog, and see the results.
 
+## Network Performance Monitoring (NPM)
+
+Datadog’s Network Performance Monitoring (NPM) provides multi-cloud visibility into network flows in granular detail, while also enabling you to aggregate and monitor that data using any tag available in Datadog. So you can query and aggregate connection metrics between any two objects—from services to availability zones, or from Kubernetes pods to security groups—to provide immediate insight into performance and dependencies.
+
+NPM is built on eBPF, which enables detailed visibility into network flows at the Linux kernel level. Consequently, NPM is powerful and efficient with extremely low overhead.
+
+NPM provides useful domain name information, such as the name resolution of the external IP addresses your services are connecting to, and the health of the DNS servers they use.
+
