@@ -708,3 +708,31 @@ NPM is built on eBPF, which enables detailed visibility into network flows at th
 
 NPM provides useful domain name information, such as the name resolution of the external IP addresses your services are connecting to, and the health of the DNS servers they use.
 
+Datadog Network Performance Monitoring (NPM) provides visibility into network traffic between services, containers, availability zones, and any other tag in Datadog. It aggregates connection data at the IP, port, and PID levels to establish application-layer dependencies between relevant source and destination endpoints.
+
+# Introduction to Log Management
+
+![What How Why](./images/what-how-why.png)
+
+**Metrics, Traces and Logs → When?**
+Data points from each data types include the timestamp for when the data was created.
+
+**Metrics, Traces, Logs → Where?**
+All three data types include where the data originated from. Where is indicated by the tags that are assigned to all data by the source natively or using the Datadog Agent (or the equivalent setup for serverless applications).
+
+**Metrics → What?**
+Ingested metrics provide information about what is happening. For example, what is the latency of an app service? What are counts per second of users viewing a webpage? What is the number of instances in an autoscaling deployment?
+
+**Traces → How?**
+Traces tell you how requests are being processed. When a request is made to the service, how does it respond? How many other services does it depend on to complete the request? How do those other services perform?
+
+**Logs → Why?**
+Logs answer the key question of why. Why did a request fail? Why did a user visit a site? Why did a cluster autoscale?
+
+Logs, in particular, provide details that can help you understand performance and troubleshoot issues more efficiently. For instance, application service logs can contain the stack-trace of a crash or which customers from which region visited a webpage. And, webserver logs can contain information such as which user accessed a webpage from which type of device and what was the status of an HTTP request. This information can be extracted from logs as attributes. The webserver log below lists attributes like IP address, timestamp, HTTP request type, HTTP status, etc.
+
+In general, logs from different sources in your system can have different structures, formats, and naming conventions for the same attributes. With millions of logs being output and collected from your infrastructure and applications, you need a comprehensive approach to log management that will help you extract meaningful information from your logs. Log Management in Datadog has been designed for this purpose.
+
+
+
+
