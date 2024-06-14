@@ -1,6 +1,6 @@
 # 👀 Observability Studies
 
-Repository to centralize my studies on [Zabbix](./Zabbix/), [Grafana](./Grafana/), [Datadog](./Datadog/) and [Prometheus](./Prometheus/).
+Repository to centralize my studies on [Zabbix](./Zabbix/), [Grafana](./Grafana/), [Datadog](./Datadog/) and [Dynatrace](./Dynatrace/).
 
 ## SLA, SLI e SLO
 
@@ -24,3 +24,6 @@ SLO: Quão bom tem que ser?
 SLA: SLO + O que acontece caso não entregue o acordado? 
 Error Budget: Equilíbrio entre inovação e estabilidade 
 
+#### Notas: 
+- Ferramentas de monitoramento e gerenciamento de desempenho de aplicações (APM, na sigla em inglês).
+- Monitoramento de experiência digital (DEM)
