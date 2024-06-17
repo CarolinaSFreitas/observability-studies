@@ -733,6 +733,3 @@ Logs, in particular, provide details that can help you understand performance an
 
 In general, logs from different sources in your system can have different structures, formats, and naming conventions for the same attributes. With millions of logs being output and collected from your infrastructure and applications, you need a comprehensive approach to log management that will help you extract meaningful information from your logs. Log Management in Datadog has been designed for this purpose.
 
-
-
-
