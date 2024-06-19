@@ -733,3 +733,9 @@ Logs, in particular, provide details that can help you understand performance an
 
 In general, logs from different sources in your system can have different structures, formats, and naming conventions for the same attributes. With millions of logs being output and collected from your infrastructure and applications, you need a comprehensive approach to log management that will help you extract meaningful information from your logs. Log Management in Datadog has been designed for this purpose.
 
+# Intro. to Log Management
+
+[Log Explorer](https://docs.datadoghq.com/logs/explorer/)
+
+A search query can include assigned tags like **env** and **service**, attributes extracted from the logs like **@http.status_code**, and text strings from log messages and attributes. Search queries built in the search field require proper search syntax.
+
