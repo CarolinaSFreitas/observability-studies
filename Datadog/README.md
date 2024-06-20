@@ -739,3 +739,19 @@ In general, logs from different sources in your system can have different struct
 
 A search query can include assigned tags like **env** and **service**, attributes extracted from the logs like **@http.status_code**, and text strings from log messages and attributes. Search queries built in the search field require proper search syntax.
 
+# Introduction to Application Performance Monitoring
+
+With Datadog APM, you can solve the following issues and more:
+
+Find traces matching a bug report for a customer, status code, and endpoint
+Live view your application trace data to gain performance insights at a glance
+Identify the slowest SQL queries on a database for a specific host and shard
+View slow and cold-starting serverless functions
+Datadog APM employs distributed tracing to optimize your application performance monitoring. Distributed tracing allows you to track the progress and status of a request as it is handled by your application’s distributed system. You can also live query all traces and only keep the ones you need.
+
+### Reserved Tag Keys
+
+Datadog has reserved tag keys for correlating metric, trace, and log data throughout the platform. If you assign any of these tags, use them only for the purposes listed below.
+
+![List of reserved tag keys](./images/reserved-tags.png)
+
