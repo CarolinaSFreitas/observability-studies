@@ -755,3 +755,63 @@ Datadog has reserved tag keys for correlating metric, trace, and log data throug
 
 ![List of reserved tag keys](./images/reserved-tags.png)
 
+# Tagging Best Practices
+
+[Tagging Doc.](https://docs.datadoghq.com/getting_started/tagging/)
+
+Tagging is a powerful tool for correlating your infrastructure and application data throughout Datadog. With your use cases and end users in mind, you can develop a deliberate tagging approach to help you optimize your monitoring workflows.
+
+Tags are labels that are attached to your data to add context, so that you can filter, group, and correlate your data throughout Datadog. Tags help you optimize your monitoring workflows, troubleshoot issues faster, and understand clearly how individual parts fit into the bigger picture of your system.
+
+![Tagging](./images/tagging.png)
+
+
+| Tag Format      | Examples     | Can be used to filter, group?        |
+|-----------------|--------------|--------------------------------------|
+| Simple Value    | staging      | Filter                               |
+|                 | demo         |                                      |
+| Key-Value Pair  | env:staging  | Filter - using key:value             |
+|                 | env:demo     | Group - using key                    |
+
+Because key:value pair tags provide the flexibility of filtering and grouping data, key:value pair tags are recommended. 
+
+## Reserved Tags and Unified Service Tagging
+
+In Datadog, there are “reserved” tag keys that are used to correlate metric, trace, and log data throughout Datadog. Correlating the data types in Datadog allows you to understand your infrastructure and applications at all levels and efficiently troubleshoot issues in performance. Reserved tag keys (listed below) should only be assigned for their defined purposes. For example, assign the service tag to application services you want to monitor in the APM product so that they appear in the Service Catalog and Service Map, and have their own Service Overview Pages.
+
+| Reserved Tag Key | Used for                                                         |
+|------------------|------------------------------------------------------------------|
+| host             | Correlation between metrics, traces, processes, and logs         |
+| device           | Segregation of metrics, traces, processes, and logs by device or disk |
+| source           | Span filtering and automated pipeline creation for log management |
+| env              | Scoping of application specific data across metrics, traces, and logs |
+| service          | Scoping of application specific data across metrics, traces, and logs |
+| version          | Scoping of application specific data across metrics, traces, and logs |
+
+The reserved keys env, service, and version, specifically, can be used together for unified service tagging of containerized and non-containerized environments. Unified service tagging allows you to scope data for an environment and service by deployment version so that you can observe the behavior of different deployments over time.
+
+#### Resumo - Categorias de Tags:
+
+1. **Native Tags:**
+   - São tags configuradas em ferramentas de provedores de serviços que podem ser automaticamente atribuídas aos dados coletados através de integrações, como Datadog. Exemplos incluem `region:xxx`, `availability-zone:xxx`, e `instance-type:xxx`.
+
+2. **Scope Tags:**
+   - Usadas por engenheiros, SREs e gestores para agrupar dados com base na organização tecnológica, como `env:xxx` para ambientes de implantação distintos e `datacenter:xxx` para identificar centros de dados específicos.
+
+3. **Function Tags:**
+   - Utilizadas para rastrear e monitorar hosts e serviços com base em casos de uso relevantes, como `service:xxx`, `site:xxx`, `role:xxx`, `database:xxx`, `webserver:xxx`.
+
+4. **Ownership Tags:**
+   - Permitem buscar e rastrear dados com base na propriedade, facilitando a criação de painéis específicos e alertas direcionados, por exemplo `team:xxx`, `owner:xxx`, `creator:xxx`.
+
+5. **Business Role Tags:**
+   - Utilizadas por gestores e equipes financeiras para alocação de custos e prestação de contas de serviços utilizados por departamentos internos e unidades de negócio, como `business_unit:xxx`, `cost_center:xxx`.
+
+6. **Customer Tags:**
+   - Usadas por usuários de negócios voltados para clientes e executivos para acompanhar o uso dos clientes e objetivos de nível de serviço, como `customer.region:xxx`, `customer.name:xxx`, `product.family:xxx`, `product.name:xxx`.
+
+7. **Monitor Tags:**
+   - Utilizadas para especificar quais infraestruturas e serviços incluir ao configurar integrações para certos serviços, como `monitor:true`, `datadog:true`.
+
+Essas categorias de tags são fundamentais para organizar e gerenciar dados de forma eficiente, proporcionando contexto e controle sobre os recursos monitorados e os serviços prestados.
+
